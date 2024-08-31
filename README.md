@@ -59,17 +59,31 @@ CNN based approach vs classical CV based approach
 ![image](https://github.com/user-attachments/assets/ace32299-4ac2-4936-9005-2fef1fe01843)
 ![image](https://github.com/user-attachments/assets/bc01621c-6fbb-4d4b-967a-c9fa49312446)
 
+- hence, softmax is used at the end of Fully Connected layer. you will have confidence scores,
+- with the help of softmax we can actually do - NMS
+
+- Putting it all together ->
+
+![image](https://github.com/user-attachments/assets/ebcfd55f-ad71-43b7-a9dc-54830ff1089d)
+
+- Final Feature map is of dim = 6 x 3 with 512 depth = 18 x 512  = 9216 flattened output vector = applied FC and Softmax = would give us 1000 prediction probabilities.
+- classification can be done using - conv + FC + softmax
+- from big image we reduce size - to high dimensional maps -> we get 1000 vector with predictions/ conf score.
+- softmax would be applied once at the end of all FC layers
+- 
+![image](https://github.com/user-attachments/assets/bb80bef6-973d-4498-a8ce-c8b88a572d64)
 
 
+- 21 = 10 filters would give us = vector of 10 = 10 - with 4 filters would give us = vector of 4 = 4 with 2 filters would give us = vector of 2 = then we can apply softmax on the final level to get the predictions.
 
+- Hence, instead of drastically dropping values from 9216 to 1000 we can add FC layers in beetween -> 
+- Dropping directly from 9216 to 1000 dimensions could cause the model to lose a lot of important information too quickly. By adding intermediate FC layers, you allow the model to gradually reduce the dimensionality, which can help it learn more meaningful and abstract features at each stage.
+- If you were to go directly from 9216 to 1000, the model might have too much capacity in a single layer, leading to overfitting. Adding intermediate layers with appropriate regularization (like dropout or weight decay) can help distribute the capacity and reduce overfitting.
+- Deep networks (those with more layers) can learn more complex functions compared to shallow networks. By adding FC layers, you increase the depth of the network, potentially allowing it to learn more intricate and useful representations of the input data.
 
-
-
-
-
-
-
-
+  
+  
+![image](https://github.com/user-attachments/assets/395c08b3-855f-4181-93d5-653b8845f1c2)
 
 
 
